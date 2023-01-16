@@ -91,7 +91,7 @@ let validArraysFlat = [];
 let passwordCharacter = "";
 let generatedPassword = "";
 
-// Object containing user-selected password options
+// OBJECT containing user-selected password options
 let passwordOptions = {
     passwordLength: 0,
     charsUpper: false,
@@ -106,10 +106,16 @@ do {
 passwordOptions.passwordLength = prompt("Please choose the length of your required password. \nAt least 10 characters but no more than 64:");
 }
 while ((passwordOptions.passwordLength < 10) || (passwordOptions.passwordLength > 64)); // error check the user's input
+
+do {
+alert("You will now be presented with series of four password options. \nYou must choose 'OK' for at least one of the options presented.\nPress 'OK' to start:");
 passwordOptions.charsUpper = confirm("Do you want to use uppercase characters in your password? \nPress OK for yes, Cancel for no:");
 passwordOptions.charsLower = confirm("Do you want to use lowercase characters in your password? \nPress OK for yes, Cancel for no:");
 passwordOptions.nums = confirm("Do you want to use numbers in your password? \nPress OK for yes, Cancel for no:");
 passwordOptions.specials = confirm("Do you want to use special characters in your password? \nPress OK for yes, Cancel for no:");
+}// ensure at least one of the datasets/types is selected, uses BOOLEAN LOGIC with AND (&&) and NOT (!) operators. 
+// These variables are initialised as boolean, '!value' is the same as 'value === false' as 'value' means 'value === true'.
+while ((!passwordOptions.charsUpper) && (!passwordOptions.charsLower) && (!passwordOptions.nums) && (!passwordOptions.specials));
 };
 
 // build an array of user-selected arrays from the object: passwordOptions
@@ -167,29 +173,3 @@ console.log(`Last randomArrayIndex: ${randomArrayIndex}`);
 console.log(`Generated password: ${generatedPassword}`);
 
 
-
-// Function to prompt user for password options
-// function getPasswordOptions() {
-// }
-
-// Function for getting a random element from an array
-// function getRandom(arr) {
-// }
-
-// Function to generate password with user input
-// function generatePassword() {
-// }
-
-// Get references to the #generate element
-// var generateBtn = document.querySelector(generatedPassword);
-
-// Write password to the #password input
-// function writePassword() {
-//     var password = generatePassword();
-//     var passwordText = document.querySelector(generatedPassword);
-
-//     passwordText.value = generatedPassword;
-// };
-
-// Add event listener to generate button
-// generateBtn.addEventListener('click', writePassword);
