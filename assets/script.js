@@ -84,7 +84,7 @@ var upperCasedCharacters = [
     'Y',
     'Z'
 ];
-
+// initialise global variables and arrays
 let randomArrayIndex = 0;
 let validArrays = [];
 let validArraysFlat = [];
@@ -106,7 +106,8 @@ do {
 passwordOptions.passwordLength = prompt("Please choose the length of your required password. \nAt least 10 characters but no more than 64:");
 }
 while ((passwordOptions.passwordLength < 10) || (passwordOptions.passwordLength > 64)); // error check the user's input
-
+// end of waiting for user to enter a number in the corect range
+//start of waiting for user to choose at least one dataset to build the password from
 do {
 alert("You will now be presented with series of four password options. \nYou must choose 'OK' for at least one of the options presented.\nPress 'OK' to start:");
 passwordOptions.charsUpper = confirm("Do you want to use uppercase characters in your password? \nPress OK for yes, Cancel for no:");
@@ -116,9 +117,10 @@ passwordOptions.specials = confirm("Do you want to use special characters in you
 }// ensure at least one of the datasets/types is selected, uses BOOLEAN LOGIC with AND (&&) and NOT (!) operators. 
 // These variables are initialised as boolean, '!value' is the same as 'value === false' as 'value' means 'value === true'.
 while ((!passwordOptions.charsUpper) && (!passwordOptions.charsLower) && (!passwordOptions.nums) && (!passwordOptions.specials));
+//end of waiting for user to choose at least one dataset to build the password from
 };
 
-// build an array of user-selected arrays from the object: passwordOptions
+// build an array of user-selected character sets from the object: passwordOptions
 function buildPasswordArray() {
 if (passwordOptions.charsUpper) {
     validArrays.push(upperCasedCharacters);
@@ -134,17 +136,19 @@ if (passwordOptions.specials) {
 };
 // flatten the nested arrays to make random element selection easier
 validArraysFlat = validArrays.flat();
-};
+};// end of build new array and build another array that is a FLATened version
 
 // Utility Function random number generator
-// PLEASE NOTE: I COPIED THIS FUNCTION 'getRandomInt' directly from Mozilla's MDN WEB DOCS at: 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_integer_between_two_values
+// *** PLEASE NOTE: I COPIED THIS FUNCTION 'getRandomIntInclusive' directly from Mozilla's MDN WEB DOCS ***  
+// at: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_integer_between_two_values_inclusive
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-};
+};// end of COPIED function
 
+// construct the password by referencing the passwordOptions OBJECT, use the getRandomIntInclusive function to 
+// randomly select from the FLATtened array of user-selected character types
 function buildPassword() {
 for (let i = 0; i < passwordOptions.passwordLength; i++) {
 randomArrayIndex = getRandomIntInclusive(0, (validArraysFlat.length -1));
@@ -152,7 +156,7 @@ passwordCharacter = validArraysFlat[randomArrayIndex];
 generatedPassword = generatedPassword + passwordCharacter;
 };
 return generatedPassword;
-};
+};//end of password generation
 
 getPasswordOptions();
 buildPasswordArray();
@@ -171,5 +175,3 @@ console.log(`Flat Array length : ${validArraysFlat.length}`);
 console.log(`Password length : ${passwordOptions.passwordLength}`);
 console.log(`Last randomArrayIndex: ${randomArrayIndex}`);
 console.log(`Generated password: ${generatedPassword}`);
-
-
