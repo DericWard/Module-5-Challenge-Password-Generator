@@ -84,11 +84,8 @@ var upperCasedCharacters = [
     'Y',
     'Z'
 ];
-// define and initialise global variables and arrays
-let randomArrayIndex = 0;
-let validArrays = [];
+// define and initialise a globally-scoped array and variable
 let validArraysFlat = [];
-let passwordCharacter = "";
 let password = "";
 
 // OBJECT containing user-selected password options
@@ -103,7 +100,10 @@ let passwordOptions = {
 // Function to prompt user for password options and store the results in the object: passwordOptions
 function getPasswordOptions() {
 do {
-passwordOptions.passwordLength = prompt("Please choose the length of your required password. \nAt least 10 characters but no more than 64:");
+passwordOptions.passwordLength = prompt("Please choose the length of your required password. \nAt least 10 characters but no more than 64:\nOr press Cancel to quit!");
+if (!(passwordOptions.passwordLength)) {
+    return;
+};
 }
 while ((passwordOptions.passwordLength < 10) || (passwordOptions.passwordLength > 64)); // error check the user's input
 // end of waiting for user to enter a number in the corect range
@@ -123,32 +123,39 @@ while ((!passwordOptions.charsUpper) && (!passwordOptions.charsLower) && (!passw
 
 // build an array of user-selected character sets from the object: passwordOptions
 function buildPasswordArray() {
-if (passwordOptions.charsUpper) { // if charsUpper === true eg: the user has selected uppercased characters
-    validArrays.push(upperCasedCharacters);
+    let validArrays = []; // locally-scoped, this is to store the users chosen character sets
+    if (passwordOptions.charsUpper) { // if charsUpper === true eg: the user has selected uppercased characters
+    validArrays.push(upperCasedCharacters); // push the array upperCasedCharacters to this new array
 };
-if (passwordOptions.charsLower) { // if charsLower === true (see above)
-    validArrays.push(lowerCasedCharacters);
+    if (passwordOptions.charsLower) { // if charsLower === true (see above)
+    validArrays.push(lowerCasedCharacters); // these 4 'if' statements are basically the same, for each of the 4 character sets
 };
-if (passwordOptions.nums) { // see above
+    if (passwordOptions.nums) { // see above
     validArrays.push(numericCharacters);
 };
-if (passwordOptions.specials) { // see above
+    if (passwordOptions.specials) { // see above
     validArrays.push(specialCharacters);
 };
-// flatten the nested arrays to make random element selection easier
+// flatten the nested arrays to make random element selection easier, 
+// .flat 'un-nests' the arrays-within-the-array
 validArraysFlat = validArrays.flat();
 };// end of build new array and build another array that is a FLATened version
 
-// construct the password by referencing the passwordOptions OBJECT, use the getRandomIntInclusive function to 
-// randomly select from the FLATtened array of user-selected character types
+// construct the password by referencing the passwordOptions OBJECT, use the randomInt function to 
+// randomly select from the FLATtened array of user-selected character sets
 function generatePassword() {
-    //NESTED FUNCTION to generate a random integer
+    //NESTED FUNCTION randomInt to generate a random integer
     function randomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1) + min);
     };//end of nested function
-    // main function, uses the nested function (randomInt) above
+    
+    // parent function generatePassword - uses the nested function (randomInt) above
+    let passwordCharacter = "";
+    let randomArrayIndex = 0;
+    // for the length of the flattened array, keep selecting array elements at random
+    // and append them to the string variable named 'password'
     for (let i = 0; i < passwordOptions.passwordLength; i++) {
     randomArrayIndex = randomInt(0, (validArraysFlat.length -1));
     passwordCharacter = validArraysFlat[randomArrayIndex];
@@ -161,7 +168,7 @@ getPasswordOptions(); // run the function that asks the user to input their choi
 buildPasswordArray(); // build the dataset 0f arrays the use has chosen
 generatePassword();  // generate a random password from the data set. 
 //I've globally-scoped the generatePassword call so that it 'could' be used elsewhere easily
-//instead of it residing in the writePassword function.
+//instead of being locally-scoped within the writePassword function.
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -169,11 +176,6 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
     var passwordText = document.querySelector('#password');
     passwordText.value = password;
-    return // This return ensures the program only outputs the password once -
-    // without this return statement, the program keeps generating passwords 
-    // every time the button is clicked, each time the newly generated password
-    // being appended to the already generated (or appeneded to) password 
-    // (until some buffer is full, perhaps)
 };
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
