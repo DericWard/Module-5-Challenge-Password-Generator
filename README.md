@@ -37,7 +37,6 @@
 ###### Prompts presented to the user:
 ![error-1](https://user-images.githubusercontent.com/50495939/212894032-188f0611-19b5-4ab7-9ac0-4e29ff6b15cf.PNG)
 ![error-2](https://user-images.githubusercontent.com/50495939/212894080-2082a9b2-8888-4821-ae53-70f04fe5f9bf.PNG)
-![password-generator-screenshot-alert-box-1](https://user-images.githubusercontent.com/50495939/212894123-72705938-8193-45ed-b39b-1ac68d328bdc.PNG)
 ![password-generator-screenshot-confirm-box-1](https://user-images.githubusercontent.com/50495939/212894212-a2290ba9-40d7-424e-a313-665b55a6d46a.PNG)
 ![password-generator-screenshot-confirm-box-2](https://user-images.githubusercontent.com/50495939/212894263-2f0faaad-4c5b-4c6c-a959-8c5c8061341c.PNG)
 ![password-generator-screenshot-confirm-box-3](https://user-images.githubusercontent.com/50495939/212894291-159a5d48-0726-46ea-8716-dc5da5535404.PNG)
