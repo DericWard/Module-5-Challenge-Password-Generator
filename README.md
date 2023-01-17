@@ -31,7 +31,7 @@
 #### Ensure there are no errors displayed in the browser's dev tools console screen
 #### Please note you will have to refresh/reload the webpage each time you want to generate a new password.
 ### App screenshots:
-###### Ten character randomly generated password:
+###### Ten character randomly generated password utilising all four character sets:
 ![password-generator-screenshot-main](https://user-images.githubusercontent.com/50495939/212893728-c6ec94b5-0d1b-40e8-b620-7a97df03f89a.PNG)
 ###### The user chose to generate a ten character password utilising all four of the character sets.
 ###### Prompts presented to the user:
