@@ -41,9 +41,9 @@
 ![password-generator-screenshot-confirm-box-2](https://user-images.githubusercontent.com/50495939/212894263-2f0faaad-4c5b-4c6c-a959-8c5c8061341c.PNG)
 ![password-generator-screenshot-confirm-box-3](https://user-images.githubusercontent.com/50495939/212894291-159a5d48-0726-46ea-8716-dc5da5535404.PNG)
 ![password-generator-screenshot-confirm-box-4](https://user-images.githubusercontent.com/50495939/212894319-884f6cdb-b4a0-4649-ae80-ea16d32e1201.PNG)
-###### If the user inputs a number out of range for the password length they will again be presented with the following prompt, which oulines the valid number range and gives the user the option to quit via the Cancel button:
+###### If the user inputs a number out of range for the password length they will again be presented with the following prompt, which outlines the valid number range and gives the user the option to quit via the Cancel button:
 ![error-1](https://user-images.githubusercontent.com/50495939/212894541-a6afd537-57a9-4efb-a047-179cea652341.PNG)
-###### If the user does not select a character set for the password they will again be presented with this alert which again explains that they must choose at least one character set:
+###### If the user does not select a character set for the password they will again be presented with this alert which explains that they must choose at least one character set:
 ![error-2](https://user-images.githubusercontent.com/50495939/212894906-799053b0-6f13-478a-a351-c1169fa5c7cb.PNG)
 
 
